@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Registro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="container">
+    <form action="" class="form" id="form" autocomplete="off">
+      <p class="form-titulo">Regístrate</p>
+
+      <div class="form-input myname">
+        <input type="text" id="myname">
+        <label for="myname">Nombre Apellido</label>
+        <p class="mensajeError"></p>
+      </div>
+      <div class="form-input myid">
+        <input type="text" id="myid">
+        <label for="myid">Clave de acceso</label>
+        <p class="mensajeError"></p>
+      </div>
+
+      <div class="form-input sexo">
+      <select class="form-select" aria-label="Default select example" id="sexo" required>
+        <option selected>Seleccione sexo</option>
+        <option value="1">Hombre</option>
+        <option value="2">Mujer</option>
+        <option value="3">Otro</option>
+      </select> <br>
+      <br>
+          
+      <div class="form-input carrera">
+    <select class="form-select" aria-label="Default select example" id="carrera" required>
+      <option selected>Seleccione carrera</option>
+      <option value="1">AGRONOMIA</option>
+      <option value="2">TICS</option>
+      <option value="3">ADMINISTRACION</option>
+    </select>
+
+  
+  </div>
+
+  <input type="date" id="fecha"><br><br>
+
+    <input type="file" id="imagen">
+
+
+      <div class="form-boton" id="agregar" onclick= "guardar()"> </button> 
+        <input type="submit" value="Enviar">
+      </div>
+      <p class="mensajeCorrecto"></p>
+
+       
+        <div class="col">
+          <table class="table table-white table-sm">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Clave</th>
+                <th>Sexo</th>
+                <th>Carrera</th>
+                <th>Fecha</th>
+                <th>Imagen</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+    </form>
+    
+    
+  </div>
+
+  </div>
+  <script>
+    
+    var getDtaForm = function (event) {
+      event.preventDefault();
+
+ 
+      var fileName = document.getElementById('imagen').files[0].name;
+      console.log(fileName);
+      
+      var imagen1 = "<img src='IMG\\" + fileName + "' alt='test' width='50px' height='50px'/>";
+
+          var myname = document.getElementById('myname').value;
+      var myid = document.getElementById('myid').value;
+
+      var options = document.getElementById('sexo').options;
+      var sexo = options[options.selectedIndex].text;
+
+      var optionsCarrera = document.getElementById("carrera").options;
+      var carrera = optionsCarrera[optionsCarrera.selectedIndex].text;
+
+      var fechas = document.getElementById('fecha').value;
+      var fecha = new Date(fechas).toLocaleDateString('en-GB');
+
+      
+      var table = document.getElementsByTagName("table")[0];
+      table.innerHTML += "<tr><th scope='row'>" + myid + "</th><td>" + myname + "</td><td>" + sexo + "</td><td>" + carrera + "</td><td>" + fecha + "</td><td>" + imagen1 + "</td></tr>";
+
+
+    };
+
+    var form1 = document.getElementById("form");
+
+
+    function llenar(e) {
+      console.log(e)
+      e.preventDedault();
+      form.reset();
+
+
+    } 
+    function guardar(){
+      alert('¿Desea guardar registro?')
+      form1.addEventListener("submit", getDtaForm, true);
+      if(alert==true){
+        
+      }else{
+         false;
+      }
+     
+    }
+
+    function validar(){
+      if(sexo=='' || carrera==''){
+        alert('llenar campos')
+
+      }else{
+        
+      }
+      
+
+    }
+
+  </script>
+
+</body>
+</html>
